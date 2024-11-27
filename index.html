@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Color Word Stroop Task</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: left;
+            padding: 3%;
+
+            line-height: 1.6;
+            user-select: none; /* Disables text selection */
+            -webkit-user-select: none; /* For Safari */
+            -moz-user-select: none; /* For Firefox */
+            -ms-user-select: none; /* For Internet Explorer/Edge */
+        }
+        .instructions {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+        .instructions ul {
+            text-align: left;
+            display: inline-block;
+        }
+        .instructions ul li {
+            margin: 10px 0;
+        }
+        .instructions ul li span {
+            font-weight: bold;
+        }
+        .start-btn {
+            font-size: 2rem;
+            padding: 5px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 5px auto;
+        }
+        .start-btn:hover {
+            background-color: #45a049;
+        }
+
+        #instructions {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: gray;
+        }
+
+        #display-area {
+            text-align: center;
+            margin-top: 15%;
+            font-size: 3rem;
+            font-weight: bold;
+
+
+        }
+
+        .rectangle {
+            width: 150px;
+            height: 80px;
+            margin: 0 auto;
+            display: block;
+        }
+        #game-screen {
+            padding-top: 5%;
+        }
+        .ins {
+            padding-left: 5%;
+            padding-right: 5%;
+        }
+    </style>
+</head>
+<body>
+    <div class="instructions">
+        <p>In the following trials, you will see words presented in different colors. Your task is to indicate the <span style="text-decoration: underline;">COLOR</span> in which each word is printed while ignoring what the words actually say.</p>
+        <p>Indicate the color of the word by pressing either of the following keys:</p>
+        <ul>
+            <li><span>D</span> for <span style="color: red;">red</span> words</li>
+            <li><span>F</span> for <span style="color: green;">green</span> words</li>
+            <li><span>J</span> for <span style="color: blue;">blue</span> words</li>
+            <li><span>K</span> for <span style="color: black;">black</span> words</li>
+        </ul>
+        <p>Example: if you see the word <span style="color: green;">RED</span> printed in the color <span style="color: green;">GREEN</span>, press '<span>F</span>' for green words regardless of the meaning of the word.</p>
+        <p>Try to respond as quickly and accurately as you can, because you will be timed. If an incorrect response is made, a red <span style="color: red;">X</span> will be flashed onto the screen.</p>
+    </div>
+
+    <div id="game-screen" style="display:none;">
+        <div id="instructions">
+            <span class="ins">d = red</span> <span class="ins">f = green</span> <span class="ins">j = blue</span> <span class="ins">k = black</span>
+        </div>
+        <div id="display-area"></div>
+    </div>
+
+    <button class="start-btn">Start</button>
+    <script src="index.js"></script>
+</body>
+</html>
