@@ -94,7 +94,7 @@ function showResults() {
     document.body.style.cursor = 'auto';
     document.body.innerHTML = `
         <div style="text-align: center; font-size: 2rem;">
-            <p>Experiment Finished!</p>
+            <p>Stroop task Finished!</p>
             <p>Correct Answers: ${correctCount}</p>
             <p>Mistakes: ${mistakeCount}</p>
         </div>
@@ -147,14 +147,21 @@ function listenForInput() {
         if (!validKeys.includes(event.key)) return; // Ignore invalid keys
 
         // Check correctness
+        console.log(event.key)
+        console.log(currentColor.key)
         if (event.key === currentColor.key) {
+            
             if (isWarmup == false) {
+                console.log('Correct')
                 correctCount++;
+                
             }
             
         } else {
+            console.log('Incorrect')
             if (isWarmup == false) {
                 mistakeCount++;
+                
             }
             showMistakeFeedback(); // Show feedback for mistakes
         }
@@ -165,10 +172,10 @@ function listenForInput() {
     });
 }
 
-// Generate the next trial
 function nextTrial() {
     currentRound++;
-    console.log(currentRound)
+    console.log(currentRound);
+
     // Check if warmup phase is over
     if (currentRound > 5 && isWarmup) {
         isWarmup = false;
@@ -177,29 +184,32 @@ function nextTrial() {
 
     // Randomize between text or rectangle
     const randomType = Math.random() > 0.5 ? "text" : "rectangle";
-    currentColor = colors[Math.floor(Math.random() * colors.length)];
+    currentColor = colors[Math.floor(Math.random() * colors.length)]; // The actual text name
 
     displayArea.innerHTML = ""; // Clear the previous display
-    
 
     setTimeout(() => {
         if (randomType === "text") {
-            // Display the name of the color
+            // Pick a totally random font color
+            const randomFontColor = colors[Math.floor(Math.random() * colors.length)];
+
             const colorText = document.createElement("span");
-            colorText.textContent = currentColor.name;
-            colorText.style.color = currentColor.code;
+            colorText.textContent = currentColor.name; // Keep the name random
+            colorText.style.color = randomFontColor.code; // Set font color to random
+
             displayArea.appendChild(colorText);
+
+            // Update the currentColor to match the font color (for correctness check)
+            currentColor = randomFontColor;
+
         } else {
             // Display a rectangle of the color
             const rectangle = document.createElement("div");
             rectangle.className = "rectangle";
             rectangle.style.backgroundColor = currentColor.code;
             displayArea.appendChild(rectangle);
-            
         }
+
         listenForInput(); // Start listening for input
     }, 200);
-    
-
-    
 }
